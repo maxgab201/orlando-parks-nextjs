@@ -2,11 +2,19 @@ import Link from 'next/link'
 
 export default function NotFound() {
   return (
-    <div className="flex items-center justify-center min-h-screen">
-      <div className="text-center">
-        <h2 className="text-4xl font-bold mb-4">404</h2>
-        <p className="text-xl text-gray-600 mb-6">Página no encontrada</p>
-        <Link href="/" className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700">
+    <div style={{ minHeight: '100vh', display: 'flex', alignItems: 'center', justifyContent: 'center', backgroundColor: '#ffffff' }}>
+      <div style={{ textAlign: 'center' }}>
+        <h2 style={{ fontSize: '48px', fontWeight: 'bold', marginBottom: '16px', color: '#1a1a1a' }}>404</h2>
+        <p style={{ fontSize: '20px', color: '#666666', marginBottom: '24px' }}>Página no encontrada</p>
+        <Link href="/" style={{
+          display: 'inline-block',
+          padding: '12px 24px',
+          backgroundColor: '#0066cc',
+          color: 'white',
+          textDecoration: 'none',
+          borderRadius: '8px',
+          fontWeight: 'bold'
+        }}>
           Volver al inicio
         </Link>
       </div>

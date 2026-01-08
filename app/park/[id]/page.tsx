@@ -1,9 +1,13 @@
-'use client'
-
 import { parks } from '@/data/parks'
 import Header from '@/components/Header'
 import { ChevronLeft, Clock, Users, MapPin } from 'lucide-react'
 import Link from 'next/link'
+
+export function generateStaticParams() {
+  return parks.map((park) => ({
+    id: park.id,
+  }))
+}
 
 export default function ParkPage({ params }: { params: { id: string } }) {
   const park = parks.find(p => p.id === params.id)
@@ -24,12 +28,15 @@ export default function ParkPage({ params }: { params: { id: string } }) {
     )
   }
 
+  const isDisney = park.company === 'Disney'
+  const headerColor = isDisney ? 'bg-blue-600' : 'bg-red-600'
+
   return (
     <div className="min-h-screen bg-white">
       <Header />
 
       {/* Hero Section */}
-      <section className={`${park.color} text-white py-12 px-4 sm:px-6 lg:px-8`}>
+      <section className={`${headerColor} text-white py-12 px-4 sm:px-6 lg:px-8`}>
         <div className="max-w-6xl mx-auto">
           <Link href="/" className="flex items-center gap-2 mb-6 hover:opacity-80 transition-opacity w-fit">
             <ChevronLeft size={20} />
@@ -48,7 +55,7 @@ export default function ParkPage({ params }: { params: { id: string } }) {
             <h2 className="text-3xl font-bold text-gray-900 mb-8">Atracciones</h2>
             <div className="space-y-6">
               {park.attractions.map((attraction) => (
-                <div key={attraction.id} className="bg-white border-2 border-gray-200 rounded-lg p-6 hover:border-blue-600 hover:shadow-lg transition-all">
+                <div key={attraction.id} className="bg-white border-2 border-gray-300 rounded-lg p-6 hover:border-blue-600 hover:shadow-lg transition-all">
                   <h3 className="text-2xl font-bold text-gray-900 mb-2">{attraction.name}</h3>
                   <p className="text-gray-600 mb-4">{attraction.description}</p>
                   
@@ -98,7 +105,7 @@ export default function ParkPage({ params }: { params: { id: string } }) {
 
           {/* Sidebar - Itinerario */}
           <div className="lg:col-span-1">
-            <div className="bg-gray-50 rounded-lg p-6 sticky top-24">
+            <div className="bg-gray-50 rounded-lg p-6 sticky top-24 border border-gray-200">
               <h3 className="text-2xl font-bold text-gray-900 mb-6">Itinerario Sugerido</h3>
               <div className="space-y-3">
                 {park.itinerary.map((item, idx) => (
@@ -120,7 +127,7 @@ export default function ParkPage({ params }: { params: { id: string } }) {
       </div>
 
       {/* CTA Section */}
-      <section className="bg-gradient-to-r from-blue-600 to-purple-600 text-white py-12 px-4 sm:px-6 lg:px-8">
+      <section className={`${headerColor} text-white py-12 px-4 sm:px-6 lg:px-8`}>
         <div className="max-w-4xl mx-auto text-center">
           <h2 className="text-3xl font-bold mb-4">¿Listo para tu aventura?</h2>
           <p className="text-lg mb-8 opacity-90">Descubre más parques y planifica tu viaje perfecto a Orlando</p>

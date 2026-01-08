@@ -8,7 +8,7 @@ export default function Header() {
   const [isOpen, setIsOpen] = useState(false)
 
   return (
-    <header className="sticky top-0 z-50 bg-white shadow-md">
+    <header className="sticky top-0 z-50 bg-white shadow-md border-b border-gray-200">
       <nav className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
         <div className="flex justify-between items-center">
           {/* Logo */}
@@ -23,13 +23,13 @@ export default function Header() {
 
           {/* Desktop Menu */}
           <div className="hidden md:flex gap-8 items-center">
-            <Link href="/#disney" className="text-gray-700 hover:text-blue-600 font-medium transition-colors">
+            <Link href="#disney" className="text-gray-700 hover:text-blue-600 font-medium transition-colors">
               Disney
             </Link>
-            <Link href="/#universal" className="text-gray-700 hover:text-red-600 font-medium transition-colors">
+            <Link href="#universal" className="text-gray-700 hover:text-red-600 font-medium transition-colors">
               Universal
             </Link>
-            <Link href="/#guides" className="text-gray-700 hover:text-purple-600 font-medium transition-colors">
+            <Link href="#guides" className="text-gray-700 hover:text-purple-600 font-medium transition-colors">
               Guías
             </Link>
           </div>
@@ -37,7 +37,7 @@ export default function Header() {
           {/* Mobile Menu Button */}
           <button
             onClick={() => setIsOpen(!isOpen)}
-            className="md:hidden p-2 hover:bg-gray-100 rounded-lg transition-colors"
+            className="md:hidden p-2 hover:bg-gray-100 rounded-lg transition-colors text-gray-900"
           >
             {isOpen ? <X size={24} /> : <Menu size={24} />}
           </button>
@@ -47,21 +47,21 @@ export default function Header() {
         {isOpen && (
           <div className="md:hidden mt-4 space-y-2 animate-fadeInUp">
             <Link
-              href="/#disney"
+              href="#disney"
               className="block px-4 py-2 text-gray-700 hover:bg-blue-50 rounded-lg transition-colors"
               onClick={() => setIsOpen(false)}
             >
               Disney
             </Link>
             <Link
-              href="/#universal"
+              href="#universal"
               className="block px-4 py-2 text-gray-700 hover:bg-red-50 rounded-lg transition-colors"
               onClick={() => setIsOpen(false)}
             >
               Universal
             </Link>
             <Link
-              href="/#guides"
+              href="#guides"
               className="block px-4 py-2 text-gray-700 hover:bg-purple-50 rounded-lg transition-colors"
               onClick={() => setIsOpen(false)}
             >

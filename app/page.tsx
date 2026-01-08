@@ -5,7 +5,7 @@ import Link from 'next/link'
 import Header from '@/components/Header'
 import SearchBar from '@/components/SearchBar'
 import { parks } from '@/data/parks'
-import { ChevronRight, MapPin, Clock, Users } from 'lucide-react'
+import { ChevronRight, MapPin } from 'lucide-react'
 
 export default function Home() {
   const [searchResults, setSearchResults] = useState<any[]>([])
@@ -16,14 +16,8 @@ export default function Home() {
       <Header />
 
       {/* Hero Section */}
-      <section className="relative h-screen bg-gradient-to-br from-purple-600 via-blue-600 to-blue-800 flex items-center justify-center overflow-hidden">
-        {/* Animated background */}
-        <div className="absolute inset-0 opacity-20">
-          <div className="absolute top-20 left-10 w-72 h-72 bg-white rounded-full mix-blend-multiply filter blur-3xl animate-pulse"></div>
-          <div className="absolute top-40 right-10 w-72 h-72 bg-purple-300 rounded-full mix-blend-multiply filter blur-3xl animate-pulse" style={{ animationDelay: '2s' }}></div>
-        </div>
-
-        <div className="relative z-10 text-center px-4 sm:px-6 lg:px-8 max-w-4xl mx-auto">
+      <section className="relative w-full bg-gradient-to-r from-blue-600 to-blue-800 text-white py-20 px-4 sm:px-6 lg:px-8">
+        <div className="max-w-6xl mx-auto text-center">
           <div className="mb-6 inline-block animate-fadeInUp">
             <span className="px-4 py-2 bg-white/20 backdrop-blur-md border border-white/30 rounded-full text-white text-sm font-medium">
               ✨ Descubre la Magia de Orlando
@@ -48,7 +42,7 @@ export default function Home() {
           <div className="flex flex-col sm:flex-row gap-4 justify-center animate-fadeInUp" style={{ animationDelay: '0.8s' }}>
             <Link
               href="#disney"
-              className="px-8 py-3 bg-blue-600 hover:bg-blue-700 text-white font-bold rounded-lg flex items-center justify-center gap-2 transition-all hover:scale-105 active:scale-95"
+              className="px-8 py-3 bg-blue-500 hover:bg-blue-600 text-white font-bold rounded-lg flex items-center justify-center gap-2 transition-all hover:scale-105 active:scale-95"
             >
               Explorar Disney <ChevronRight size={20} />
             </Link>
@@ -69,14 +63,14 @@ export default function Home() {
             <h2 className="text-3xl font-bold text-gray-900 mb-8">Resultados de Búsqueda</h2>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
               {searchResults.map((result) => (
-                <div key={result.id} className="bg-white rounded-lg shadow-md hover:shadow-lg transition-shadow p-6">
+                <div key={result.id} className="bg-white rounded-lg shadow-md hover:shadow-lg transition-shadow p-6 border border-gray-200">
                   <h3 className="text-xl font-bold text-gray-900 mb-2">{result.name}</h3>
                   <p className="text-gray-600 mb-4">{result.description}</p>
                   <div className="space-y-2 text-sm text-gray-600">
-                    <p><strong>Tipo:</strong> {result.type}</p>
-                    <p><strong>Parque:</strong> {result.park}</p>
-                    <p><strong>Duración:</strong> {result.duration}</p>
-                    <p><strong>Tiempo de espera:</strong> ~{result.waitTime} min</p>
+                    <p><strong className="text-gray-900">Tipo:</strong> {result.type}</p>
+                    <p><strong className="text-gray-900">Parque:</strong> {result.park}</p>
+                    <p><strong className="text-gray-900">Duración:</strong> {result.duration}</p>
+                    <p><strong className="text-gray-900">Tiempo de espera:</strong> ~{result.waitTime} min</p>
                   </div>
                 </div>
               ))}
@@ -86,24 +80,13 @@ export default function Home() {
       )}
 
       {/* Disney Section */}
-      <section id="disney" className="py-16 px-4 sm:px-6 lg:px-8 bg-white">
+      <section id="disney" className="py-16 px-4 sm:px-6 lg:px-8 bg-white border-t border-gray-200">
         <div className="max-w-6xl mx-auto">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center mb-12">
-            <div className="animate-slideInLeft">
-              <h2 className="text-4xl font-bold text-gray-900 mb-4">Disney World</h2>
-              <p className="text-lg text-gray-600 mb-6">
-                Descubre la magia de Disney con sus cuatro parques temáticos únicos: Magic Kingdom, EPCOT, Hollywood Studios y Animal Kingdom. Cada parque ofrece experiencias inolvidables.
-              </p>
-              <Link
-                href="/disney"
-                className="inline-flex items-center gap-2 px-6 py-3 bg-blue-600 hover:bg-blue-700 text-white font-bold rounded-lg transition-all hover:scale-105 active:scale-95"
-              >
-                Explorar Parques <ChevronRight size={20} />
-              </Link>
-            </div>
-            <div className="bg-blue-100 rounded-lg h-64 flex items-center justify-center text-blue-600 font-bold text-xl">
-              [Imagen Disney]
-            </div>
+          <div className="mb-12">
+            <h2 className="text-4xl font-bold text-gray-900 mb-4">🏰 Disney World</h2>
+            <p className="text-lg text-gray-600 mb-6">
+              Descubre la magia de Disney con sus cuatro parques temáticos únicos: Magic Kingdom, EPCOT, Hollywood Studios y Animal Kingdom. Cada parque ofrece experiencias inolvidables.
+            </p>
           </div>
 
           {/* Disney Parks Grid */}
@@ -112,7 +95,7 @@ export default function Home() {
               <Link
                 key={park.id}
                 href={`/park/${park.id}`}
-                className="group bg-white border-2 border-gray-200 rounded-lg overflow-hidden hover:border-blue-600 hover:shadow-lg transition-all"
+                className="group bg-white border-2 border-gray-300 rounded-lg overflow-hidden hover:border-blue-600 hover:shadow-lg transition-all"
               >
                 <div className="bg-blue-100 h-40 flex items-center justify-center text-blue-600 font-bold text-lg group-hover:bg-blue-200 transition-colors">
                   {park.name}
@@ -132,24 +115,13 @@ export default function Home() {
       </section>
 
       {/* Universal Section */}
-      <section id="universal" className="py-16 px-4 sm:px-6 lg:px-8 bg-gray-50">
+      <section id="universal" className="py-16 px-4 sm:px-6 lg:px-8 bg-gray-50 border-t border-gray-200">
         <div className="max-w-6xl mx-auto">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center mb-12">
-            <div className="bg-red-100 rounded-lg h-64 flex items-center justify-center text-red-600 font-bold text-xl order-2 lg:order-1">
-              [Imagen Universal]
-            </div>
-            <div className="animate-slideInLeft order-1 lg:order-2">
-              <h2 className="text-4xl font-bold text-gray-900 mb-4">Universal Orlando</h2>
-              <p className="text-lg text-gray-600 mb-6">
-                Vive la emoción de Universal Orlando con sus parques temáticos basados en películas famosas. Desde Harry Potter hasta Jurassic World, cada rincón es una aventura.
-              </p>
-              <Link
-                href="/universal"
-                className="inline-flex items-center gap-2 px-6 py-3 bg-red-600 hover:bg-red-700 text-white font-bold rounded-lg transition-all hover:scale-105 active:scale-95"
-              >
-                Explorar Parques <ChevronRight size={20} />
-              </Link>
-            </div>
+          <div className="mb-12">
+            <h2 className="text-4xl font-bold text-gray-900 mb-4">🎬 Universal Orlando</h2>
+            <p className="text-lg text-gray-600 mb-6">
+              Vive la emoción de Universal Orlando con sus parques temáticos basados en películas famosas. Desde Harry Potter hasta Jurassic World, cada rincón es una aventura.
+            </p>
           </div>
 
           {/* Universal Parks Grid */}
@@ -158,7 +130,7 @@ export default function Home() {
               <Link
                 key={park.id}
                 href={`/park/${park.id}`}
-                className="group bg-white border-2 border-gray-200 rounded-lg overflow-hidden hover:border-red-600 hover:shadow-lg transition-all"
+                className="group bg-white border-2 border-gray-300 rounded-lg overflow-hidden hover:border-red-600 hover:shadow-lg transition-all"
               >
                 <div className="bg-red-100 h-40 flex items-center justify-center text-red-600 font-bold text-lg group-hover:bg-red-200 transition-colors">
                   {park.name}
